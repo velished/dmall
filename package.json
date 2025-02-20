@@ -1,0 +1,13 @@
+{
+  "name": "discord-dm-bot",
+  "version": "1.0.0",
+  "description": "Discord DM automatisé",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "discord.js-selfbot-v13": "^2.15.1"
+  }
+} 

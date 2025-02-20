@@ -1,0 +1,12 @@
+# Dépendances
+node_modules/
+
+# Fichiers de configuration avec données sensibles
+config.js
+
+# Logs
+logs/
+*.log
+
+# Fichiers système
+.DS_Store
