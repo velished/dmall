@@ -20,7 +20,7 @@ class MessageManager {
             console.log(`${Constants.EMOJIS.INFO} Nombre d'amis trouvés: ${amis.length}`);
             return amis;
         } catch (erreur) {
-            console.error(`${Constants.EMOJIS.ERROR} Erreur lors de la récupération des amis:`, erreur.message);
+            console.error(erreur.message);
             return [];
         }
     }
@@ -63,7 +63,7 @@ class MessageManager {
             this.afficherResultats(stats);
             return stats;
         } catch (erreur) {
-            console.error(`${Constants.EMOJIS.ERROR} Erreur:`, erreur.message);
+            console.error(erreur.message);
             return null;
         }
     }
