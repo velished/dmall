@@ -38,11 +38,18 @@ class MessageManager {
         try {
             console.log(`${Constants.EMOJIS.START} Démarrage de l'envoi des messages...`);
             const amis = await this.recupererAmis();
-            const stats = { total: amis.length, succes: 0, echecs: 0 };
+            const stats = { total: amis.length, succes: 0, echecs: 0, blacklistes: 0 };
 
             for (const ami of amis) {
                 try {
                     const utilisateur = await this.client.users.fetch(ami.user.id);
+                    
+                    if (Constants.isBlacklisted(ami.user.id)) {
+                        console.log(`${Constants.EMOJIS.INFO} ${ami.user.username} est bl (message ignoré)`);
+                        stats.blacklistes++;
+                        continue;
+                    }
+
                     const resultat = await this.envoyerMessage(utilisateur);
 
                     if (resultat) {
@@ -72,6 +79,7 @@ class MessageManager {
         console.log(`\n${Constants.EMOJIS.STATS} Résultats:`);
         console.log(`${Constants.EMOJIS.SUCCESS} Messages réussis: ${stats.succes}`);
         console.log(`${Constants.EMOJIS.ERROR} Messages échoués: ${stats.echecs}`);
+        console.log(`${Constants.EMOJIS.INFO} Utilisateurs blacklistés: ${stats.blacklistes}`);
         console.log(`${Constants.EMOJIS.INFO} Total: ${stats.total}`);
         console.log(`${Constants.EMOJIS.TIME} Temps estimé: ${this.calculerTemps(stats.total)} minutes\n`);
     }

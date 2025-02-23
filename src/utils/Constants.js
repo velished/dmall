@@ -1,3 +1,5 @@
+const config = require('../../config');
+
 module.exports = {
     API: {
         DISCORD: 'https://discordapp.com/api/v9',
@@ -15,5 +17,8 @@ module.exports = {
         STATS: '📊',
         TIME: '⏱️',
         START: '🚀'
+    },
+    isBlacklisted: (userId) => {
+        return config.blacklist.includes(userId);
     }
 }; 
